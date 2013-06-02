@@ -1,0 +1,6 @@
+In each directory, you will find a "content.txt" which has a brief explanation of what that code does.
+
+This is the list of the codes you can find here:
+
+01 - blinking led
+02 - string to morse code converter

@@ -1,0 +1,13 @@
+In this project, we will be able to type a message and convert it into morse code.
+
+Some of the rules of Morse code are that a dash is three times as long as a dot, the time between each dash or dot is
+equal to the duration of a dot, the space between two letters is the same length as a dash, and the space between two
+words is the same duration as seven dots.
+
+Hardware:
+- 1x LED
+- 1x 330 Ohms resistor
+
+Mounting:
+Put the negative leg of the LED connected to the resistor. The other side of the resistor goes on GND.
+The positive leg of the LED goes on pin 12.

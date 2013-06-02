@@ -1,0 +1,9 @@
+This code is nothing but a variation of the "blink" example. A very basic example.
+
+Hardware:
+- 1x LED
+- 1x 330 Ohms resistor
+
+Mounting:
+Put the negative leg of the LED connected to the resistor. The other side of the resistor goes on GND.
+The positive leg of the LED goes on pin 12.

@@ -1,0 +1,226 @@
+C51 COMPILER V7.06   CODE                                                                  07/05/2012 09:24:51 PAGE 1   
+
+
+C51 COMPILER V7.06, COMPILATION OF MODULE CODE
+OBJECT MODULE PLACED IN code.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE code.c BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          //功能：本程序适用HC-SR04测量距离，范围2cm--450cm，适用LCD1602显示距离
+   2          //时间：2012年7月5日
+   3          #include <AT89x51.h>            
+   4          #include <intrins.h>
+   5          #define uint unsigned int
+   6          #define uchar unsigned char
+   7          #define  TX  P1_1               
+   8          #define  RX  P1_2
+   9          #define LCM_Data  P0
+  10          #define Busy    0x80 
+  11          unsigned int  time=0;//用于存放定时器时间值
+  12          unsigned long S=0;//用于存放距离的值
+  13          bit  flag =0; //量程溢出标志位
+  14                          
+  15          unsigned char code Range[] ="==Range Finder==";//LCD1602显示格式
+  16          unsigned char code ASCII[13] = "0123456789.-M";
+  17          unsigned char code table[]="Distance:000.0cm";
+  18          unsigned char code table1[]="!!! Out of range";
+  19          sbit RS=P2^0;
+  20          sbit RW=P2^1;
+  21          sbit E=P2^2;
+  22          /************延时5ms*************************/
+  23          void Delay5Ms(void)//
+  24          {
+  25   1              uint TempCyc = 5552;
+  26   1              while(TempCyc--);
+  27   1      }
+  28          /******************读状态*****************/
+  29          uchar ReadStatusLCM(void)
+  30          {
+  31   1              LCM_Data=0xFF; 
+  32   1              RS=0;
+  33   1              RW=1;
+  34   1              E=0;
+  35   1              E=0;
+  36   1              E=1;
+  37   1              while (LCM_Data & Busy); //检测忙信号
+  38   1              return(LCM_Data);
+  39   1      }
+  40          /***************写数据********************/
+  41          void WriteDataLCM(uchar WDLCM) 
+  42          {
+  43   1              ReadStatusLCM(); //检测忙
+  44   1              LCM_Data = WDLCM;
+  45   1              RS=1;
+  46   1              RW=0;
+  47   1              E=0; //若晶振速度太高可以在这后加小的延时
+  48   1              E=0; //延时
+  49   1              E=1;
+  50   1      }
+  51          /*****************写指令*****************/
+  52          void WriteCommandLCM(uchar WCLCM,BuysC) //BuysC为0时忽略忙检测
+  53          {
+  54   1              if(BuysC) ReadStatusLCM(); //根据需要检测忙
+  55   1              LCM_Data = WCLCM;
+C51 COMPILER V7.06   CODE                                                                  07/05/2012 09:24:51 PAGE 2   
+
+  56   1              RS=0;
+  57   1              RW=0;   
+  58   1              E=0;
+  59   1              E=0;
+  60   1              E=1;    
+  61   1      }
+  62          /*******************LCD1602初始化****************/
+  63          void LCMInit(void) 
+  64          {
+  65   1              LCM_Data = 0;
+  66   1              WriteCommandLCM(0x38,0); //三次显示模式设置，不检测忙信号
+  67   1              Delay5Ms(); 
+  68   1              WriteCommandLCM(0x38,0);
+  69   1              Delay5Ms(); 
+  70   1              WriteCommandLCM(0x38,0);
+  71   1              Delay5Ms(); 
+  72   1      
+  73   1              WriteCommandLCM(0x38,1); //显示模式设置,开始要求每次检测忙信号
+  74   1              WriteCommandLCM(0x08,1); //关闭显示
+  75   1              WriteCommandLCM(0x01,1); //显示清屏
+  76   1              WriteCommandLCM(0x06,1); // 显示光标移动设置
+  77   1              WriteCommandLCM(0x0c,1); // 显示开及光标设置
+  78   1      }
+  79          /*********在指定位置显示一个字符********************/
+  80          void DisplayOneChar(uchar X, uchar Y, uchar DData)
+  81          {
+  82   1              Y &= 0x1;
+  83   1              X &= 0xF; //限制X不能大于15，Y不能大于1
+  84   1              if (Y) X |= 0x40; //当要显示第二行时地址码+0x40;
+  85   1              X |= 0x80; //算出指令码
+  86   1              WriteCommandLCM(X, 1); //发命令字
+  87   1              WriteDataLCM(DData); //发数据
+  88   1      }
+  89          /*********************在指定位置显示字符串*************/
+  90          void DisplayListChar(uchar X, uchar Y, uchar code *DData)
+  91          {
+  92   1              uchar ListLength;
+  93   1      
+  94   1              ListLength = 0;
+  95   1              Y &= 0x1;
+  96   1              X &= 0xF; //限制X不能大于15，Y不能大于1
+  97   1              while (DData[ListLength]>0x19) //若到达字串尾则退出
+  98   1                      {
+  99   2                              if (X <= 0xF) //X坐标应小于0xF
+ 100   2                                      {
+ 101   3                                              DisplayOneChar(X, Y, DData[ListLength]); //显示单个字符
+ 102   3                                              ListLength++;
+ 103   3                                              X++;
+ 104   3                                      }
+ 105   2                      }
+ 106   1      }
+ 107          /*****************延时400ms****************/
+ 108          void Delay400Ms(void)
+ 109          {
+ 110   1              uchar TempCycA = 5;
+ 111   1              uint TempCycB;
+ 112   1              while(TempCycA--)
+ 113   1              {
+ 114   2                      TempCycB=7269;
+ 115   2                      while(TempCycB--);
+ 116   2              };
+ 117   1      }
+C51 COMPILER V7.06   CODE                                                                  07/05/2012 09:24:51 PAGE 3   
+
+ 118          /****************计算测量距离*******************/
+ 119          void Conut(void)
+ 120          {
+ 121   1              time=TH0*256+TL0;
+ 122   1              TH0=0;
+ 123   1              TL0=0;
+ 124   1              
+ 125   1              S=time*1.7; 
+ 126   1              S=S/10; 
+ 127   1              if((S>=5000)||flag==1) //超出测量范围
+ 128   1              {       
+ 129   2                      flag=0;
+ 130   2                      DisplayListChar(0, 1, table1);
+ 131   2              }
+ 132   1              else
+ 133   1              {
+ 134   2                      DisplayListChar(0, 1, table);
+ 135   2                      DisplayOneChar(9, 1, ASCII[S/1000]);
+ 136   2                      DisplayOneChar(10, 1, ASCII[S/100%10]); 
+ 137   2                      DisplayOneChar(11, 1, ASCII[S/10%10]);
+ 138   2                      DisplayOneChar(12, 1, ASCII[10]);
+ 139   2                      DisplayOneChar(13, 1, ASCII[S%10]);
+ 140   2              }
+ 141   1      }
+ 142          /*****************计算器0******************************/
+ 143          void zd0() interrupt 1           //T0中断用来计数器溢出,超过测距范围
+ 144          {
+ 145   1              flag=1;                  //中断溢出标志
+ 146   1              RX=0;
+ 147   1      }
+ 148          
+ 149          /********超声波高电平脉冲宽度计算程序***************/
+ 150          void Timer_Count(void)
+ 151          {
+ 152   1              TR0=1;                      //开启计数
+ 153   1              while(RX);                      //当RX为1计数并等待
+ 154   1              TR0=0;                          //关闭计数
+ 155   1              Conut();                        //计算
+ 156   1      
+ 157   1      }
+ 158          /************HC-SR04发送测量信号********************************************/
+ 159          void  StartModule()                      //启动模块
+ 160          {
+ 161   1              uchar i;
+ 162   1              TX=1;                                        //启动一次模块
+ 163   1              for(i=0;i<15;i++)
+ 164   1              {
+ 165   2                      _nop_(); 
+ 166   2              }
+ 167   1              TX=0;
+ 168   1      }
+ 169          /*************主程序***************************/
+ 170          void main(void)
+ 171          {
+ 172   1          uint a;
+ 173   1              Delay400Ms(); //启动等待，等LCM讲入工作状态
+ 174   1              LCMInit(); //LCM初始化
+ 175   1              Delay5Ms(); //延时片刻
+ 176   1              DisplayListChar(0, 0, Range);
+ 177   1              DisplayListChar(0, 1, table);
+ 178   1          TMOD=0x01;//设T0为方式1，GATE=1；
+ 179   1          EA=1;//开启总中断
+C51 COMPILER V7.06   CODE                                                                  07/05/2012 09:24:51 PAGE 4   
+
+ 180   1          TH0=0;
+ 181   1          TL0=0;          
+ 182   1          ET0=1;             //允许T0中断
+ 183   1                                                              
+ 184   1              while(1)
+ 185   1              {
+ 186   2                      RX=1;
+ 187   2                      StartModule();
+ 188   2                      for(a=7510;a>0;a--)
+ 189   2                      {                       
+ 190   3                              if(RX==1)
+ 191   3                              {
+ 192   4                                      Timer_Count();
+ 193   4                              }
+ 194   3                      }
+ 195   2              }
+ 196   1      } 
+ 197          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    622    ----
+   CONSTANT SIZE    =     64    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

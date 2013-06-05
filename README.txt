@@ -6,6 +6,8 @@ I take no responsability for any damage or problem that may happen to your board
 to cause any damage. Just make shure you are doing things correclty.
 
 It is worth it to mention the following websites:
+- https://github.com/mendelson/arduino_sketches/archive/master.zip
+if you want to, you can also download this repository's content as a ".zip" file.
 
 - www.arduinoevilgenius.com
 which has a lot of sketches (go to Downloads->evil_genius.zip)! Also, I recomend you to buy the book "30 arduino

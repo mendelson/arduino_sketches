@@ -1,3 +1,12 @@
+/*
+* Author: Mateus Mendelson
+* Web: https://sites.google.com/site/mateusmendelson/
+*
+* Project: Blinking LED example.
+* Date: 06/02/2013
+*
+*/
+
 int ledPin = 12;                // LED connected to digital pin 12
 
 void setup()

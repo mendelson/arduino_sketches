@@ -5,8 +5,9 @@ equal to the duration of a dot, the space between two letters is the same length
 words is the same duration as seven dots.
 
 Hardware:
-- 1x LED
-- 1x 330 Ohms resistor
+- 1x LED;
+- 1x 330 Ohms resistor;
+- Sorted wires.
 
 Mounting:
 Put the negative leg of the LED connected to the resistor. The other side of the resistor goes on GND.

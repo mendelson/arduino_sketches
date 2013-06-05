@@ -1,4 +1,13 @@
 /*
+* Author: Mateus Mendelson
+* Web: https://sites.google.com/site/mateusmendelson/
+*
+* Project: Converting string to Morse Code.
+* Date: 06/02/2013
+*
+*/
+
+/*  RULES (see content.txt)
 *
 * Dot duration = 200 ms
 * Dash duration = 3*(Dot duration) = 600 ms

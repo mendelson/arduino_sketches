@@ -1,6 +1,9 @@
 In each directory, you will find a "content.txt" which has a brief explanation of what that code does.
 
-This is the list of the codes you can find here:
+This is the list of the codes you can find here (up to now):
 
-01 - blinking led
-02 - string to morse code converter
+01 - blinking led;
+02 - string to morse code converter;
+03 - traffic and pedestrian signal (using a switch button with debouncing).
+
+Feel free to use all of these codes in anything you want, as long as you contact me (see README.txt).

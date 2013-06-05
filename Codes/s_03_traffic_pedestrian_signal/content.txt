@@ -1,0 +1,33 @@
+In this project, we will build two signals: one for the traffic, and another one for pedestrians.
+
+The rules are:
+Initial state: traffic signal open; pedestrian signal, closed.
+
+Traffic signal: it has 3 (three) LEDs (red, yellow and green). When you press the switch button, the green LED turns off after 2 seconds, and the yellow one turns on.
+Then, the yellow one turns off, and the red turns on. At the end, the green LED turns on again, and the other LEDs are turned off (going back to the initial state).
+
+Pedestrian signal: it has 2 (two) LEDs (red and green). When the traffic signal goes red, the pedestrian signal's green LED turns on for some seconds. Then, the green
+one turns off, and the red LED starts to blink (letting the pedestrians know it is about to close). After that, the red LED stays on (not blinking) and stays this way
+(going back to the initial state).
+
+Hardware:
+- 1x yellow LED;
+- 2x red LEDs;
+- 2X green LEDs;
+- 5x 330 Ohms resistor;
+- 1x 1k Ohms resistor;
+- 1x switch button;
+- Sorted wires.
+
+Mounting:
+
+Put a 330 Ohms resistor in series with each one of the LEDs. The other resistor's leg goes on GND.
+Traffic signal: red LED goes on pin 7; yellow LED goes on pin 8; green LED goes on pin 12;
+Pedestrian signal: red LED goes on pin 2; green LED goes on pin 4.
+
+Note that you can change these pins numbers on the sketch. I've chosen these ones because it was the best option for my breadboard on the day I made this project.
+
+The 1k Ohms resistor goes on the switch button. The button goes on pin 9. See picture_2 in this folder to understand how to mount it. The white wire going out of the
+screen is the one which goes on pin 9.
+
+To see the entire circuit mounted, check picture_1 in this folder.

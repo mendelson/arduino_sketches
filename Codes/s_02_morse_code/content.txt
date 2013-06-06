@@ -1,4 +1,5 @@
 In this project, we will be able to type a message and convert it into morse code.
+See it on youtube: http://www.youtube.com/watch?v=s4jcGJj8ufk
 
 Some of the rules of Morse code are that a dash is three times as long as a dot, the time between each dash or dot is
 equal to the duration of a dot, the space between two letters is the same length as a dash, and the space between two

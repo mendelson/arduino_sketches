@@ -1,9 +1,13 @@
 In this project, we will build two signals: one for the traffic, and another one for pedestrians.
-See it on youtube: http://www.youtube.com/watch?v=Wu7vpFr1L7E
+See it on youtube: 1) http://www.youtube.com/watch?v=bGP8YR4LPeY
+		   2) http://www.youtube.com/watch?v=Wu7vpFr1L7E
 
 
 The rules are:
 Initial state: traffic signal open; pedestrian signal, closed.
+
+After the entire cicle (closing traffic signal, opening pedestrian signal, closing pedestrian signal, reopennig traffic signal) the pedestrian must wait for 3 seconds
+before being able to push the button again, that is, the pedestrian may press the button, but the traffic signal will not change.
 
 Traffic signal: it has 3 (three) LEDs (red, yellow and green). When you press the switch button, the green LED turns off after 2 seconds, and the yellow one turns on.
 Then, the yellow one turns off, and the red turns on. At the end, the green LED turns on again, and the other LEDs are turned off (going back to the initial state).

@@ -3,7 +3,7 @@
 * Web: https://sites.google.com/site/mateusmendelson/
 *
 * Project: Push button to change traffic and pedestrian signal.
-* Date: 06/04/2013
+* Date: 06/05/2013
 *
 * To have a better understanding on how "Debouncing" works, see: http://sheepdogguides.com/arduino/aht0bounce1.htm
 *
@@ -33,13 +33,13 @@ void setup ()
   digitalWrite(button, HIGH); //Yes... WRITE to the input pin...#
                               //This causes the Arduino to "attach" an internal pull up
                               //resistor to the input pin.
+  // Setting initial state
+  setTrafficState (LOW, LOW, HIGH);
+  setPedestrianState (HIGH, LOW);
 }
 
 void loop ()
 {
-  setTrafficState (LOW, LOW, HIGH);
-  setPedestrianState (HIGH, LOW);
-  
   delay (10); // This delay is used to implement "debouncing". When you press the switch button, its value varies some times before stabilizing.
   
   if (!digitalRead (button))
@@ -61,6 +61,12 @@ void loop ()
     
     // Gives a warning that the pedestrian signal is about to close, and, then, closes
     closePedestrianWalk ();
+    
+    // Reseting traffic signal state
+    setTrafficState (LOW, LOW, HIGH);
+    
+    // This delay is used not to let pedestrians press the button anytime they want. After closing their signal, they must wait for 3 more seconds before pressing the button again
+    delay (3000);
   }
 }
 

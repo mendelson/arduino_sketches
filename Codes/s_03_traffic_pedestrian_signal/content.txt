@@ -16,6 +16,8 @@ Pedestrian signal: it has 2 (two) LEDs (red and green). When the traffic signal 
 one turns off, and the red LED starts to blink (letting the pedestrians know it is about to close). After that, the red LED stays on (not blinking) and stays this way
 (going back to the initial state).
 
+Also, if a pedestrian doesn't press the button for 10 seconds, the cicle will automatically start.
+
 Hardware:
 - 1x yellow LED;
 - 2x red LEDs;

@@ -20,8 +20,14 @@ int greenP = 4;
 
 int button = 9;
 
+unsigned long previousTime;
+unsigned long currentTime;
+unsigned long max_time_closed = 10000; // 10 secs
+
 void setup ()
 {
+  previousTime = 0;
+  
   pinMode (redT, OUTPUT);
   pinMode (yellowT, OUTPUT);
   pinMode (greenT, OUTPUT);
@@ -42,7 +48,9 @@ void loop ()
 {
   delay (10); // This delay is used to implement "debouncing". When you press the switch button, its value varies some times before stabilizing.
   
-  if (!digitalRead (button))
+  currentTime = millis ();
+  
+  if (!digitalRead (button) || currentTime - previousTime >= max_time_closed)
   {
     // Waits for 2 secs after pressing the button
     delay (2000);
@@ -67,6 +75,8 @@ void loop ()
     
     // This delay is used not to let pedestrians press the button anytime they want. After closing their signal, they must wait for 3 more seconds before pressing the button again
     delay (3000);
+    
+    previousTime = millis ();
   }
 }
 

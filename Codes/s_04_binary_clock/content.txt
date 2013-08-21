@@ -1,5 +1,5 @@
 In this project, we will build a simple binary clock, with hours, minutes and seconds.
-See it on youtube: http://www.youtube.com/watch?v=Nv-9MzaoiDo
+See it on youtube: http://www.youtube.com/watch?v=OdZVjF-HJFw
 
 The rules are:
 When the clock is turned on, it'll wait for you to enter any data for about 10 seconds. If data is entered (and if the

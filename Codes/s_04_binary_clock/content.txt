@@ -1,0 +1,22 @@
+In this project, we will build a simple binary clock, with hours, minutes and seconds.
+See it on youtube: http://www.youtube.com/watch?v=Nv-9MzaoiDo
+
+The rules are:
+When the clock is turned on, it'll wait for you to enter any data for about 10 seconds. If data is entered (and if the
+time you typed is valid), the clock will start working from this typed time. If you don't enter any data, the clock will
+start at 00:00:00 (it allows you to turn it on without a computer, so you don't have to type anything).
+
+Also, it is possible to attach a keyboard, so that you can type the initial time. I encourage you to do this (and send me
+your code, as well!). Since all I have is an Arduino Uno, there are no extra pins for me to implement this.
+
+
+Hardware:
+- 7x red LEDs;
+- 7x green LEDs;
+- 6x yellow LEDs;
+- 20x 330 Ohms resistor;
+- Sorted Wires.
+
+Mounting:
+Put a 330 Ohms resistor in series with each one of the LEDs. The other resistor's leg goes on GND. The pins in which each
+LED has to be conected can be seen in the youtube video or by analising the code.

@@ -3,7 +3,7 @@
 * Web: https://sites.google.com/site/mateusmendelson/
 *
 * Project: Binary Clock.
-* Date: ----------------------------------
+* Date: 20/08/2013
 *
 */
 

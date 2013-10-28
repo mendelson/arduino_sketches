@@ -20,6 +20,9 @@ if you want to, you can also download this repository's content as a ".zip" file
 - http://www.youtube.com/playlist?list=PLXC9VeDSdt4QM3OWGdXhb5ZWy_J9Ynf87
 is the youtube playlist of the projects I've made so far.
 
+- http://fritzing.org/download/
+is the link for you to download "fritzing": the software I use to create schematics.
+
 - www.arduinoevilgenius.com
 which has a lot of sketches (go to Downloads->evil_genius.zip)! Also, I recomend you to buy the book "30 arduino
 projects for the evil genius". This is a good start if you are in your first contact with electronics and Arduino.

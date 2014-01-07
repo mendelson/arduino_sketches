@@ -2,7 +2,6 @@ In this project, we will build two signals: one for the traffic, and another one
 See it on youtube: 1) http://www.youtube.com/watch?v=bGP8YR4LPeY
 		   2) http://www.youtube.com/watch?v=Wu7vpFr1L7E
 
-
 The rules are:
 Initial state: traffic signal open; pedestrian signal, closed.
 

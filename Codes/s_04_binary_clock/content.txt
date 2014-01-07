@@ -14,9 +14,12 @@ Hardware:
 - 7x red LEDs;
 - 7x green LEDs;
 - 6x yellow LEDs;
-- 20x 330 Ohms resistor;
+- 20x 330 Ohms resistor (I used 7x 330 Ohms and 13x 360 Ohms because that was what I had at the moment I made this project);
 - Sorted Wires.
 
 Mounting:
-Put a 330 Ohms resistor in series with each one of the LEDs. The other resistor's leg goes on GND. The pins in which each
-LED has to be conected can be seen in the youtube video or by analising the code.
+Put a 330 Ohms resistor in series with each one of the LEDs. The other resistor's leg goes a pin. The other LED's leg goes on GND. The pins in which each
+LED has to be conected can be seen on the youtube video, by analising the code or checking the schematic file.
+
+Another interesting way for you to implement a binary clock is using shift registers. I encourage you to do this and let me know, so I could include your
+project here. Your name will be shown on the credits for it, of course!

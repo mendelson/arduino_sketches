@@ -7,8 +7,9 @@ to cause any damage. Just make shure you are doing things correclty.
 
 ===> Folders:
 1) Codes: it contains all the codes.
-2) Libraries: it contains external libraries that you'll have to install manually (they are not included in the standard IDE installation).
-3) Theoretical Material & documentation: it has some extra material and documentation.
+2) schematic *: the folders "schematic for fritzing" have the files with each project's schematic to be used on the software Fritzing. The folders "schematic jpg" have each project's schematic as a ".jpg" file to be used in case you don't have or you don't want to use Fritzing.
+3) Libraries: it contains external libraries that you'll have to install manually (they are not included in the standard IDE installation).
+4) Theoretical Material & documentation: it has some extra material and documentation.
 
 ===> It is worth it to mention the following websites:
 - https://docs.google.com/forms/d/1QAnRPXTugEvdDgsOVwRVynd0hqM2rvqbVK4Y1kTAQ8k/viewform
